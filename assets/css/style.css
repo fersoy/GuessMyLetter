@@ -3,12 +3,17 @@ body{
 }
 
 #bigBox{
-    margin: 400px;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 200px;
     background-color: rgb(1, 12, 8);
+    border: 100px solid rgb(44, 12, 12);
 }
 #ortaBox{
-    background-color: darkslategrey;
-    margin: 100px;
+    background-color: rgb(51, 107, 107);
+    padding-top: 10px;
+    padding-bottom: 10px;
+
 }
 h1{
     font-size: bolder;

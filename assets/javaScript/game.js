@@ -1,7 +1,7 @@
 var wins = 0;
 var losses = 0;
 var leftChance = 10;
-var yourGuess = " ";
+var yourGuess = [];
 
 
 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "x", "w", "y", "z"];
@@ -13,21 +13,23 @@ var winsText = document.getElementById("win");
 var lossesText = document.getElementById("loss");
 var bosYerText = document.getElementById("bosYer");
 
-var updateGuessesSoFar = function() {
+var guessesSoFar = function() {
     document.querySelector("#trueGuess").innerHTML = yourGuess.join(", ");
   };
 
-document.onkeyup = function(event) {
+document.onkeydown = function(event) {
     leftChance--;
     var userGuess = event.key;
-
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    yourGuess.push(userGuess);
+    guessesSoFar();
 
    if((computerGuess === userGuess)){
        wins++;
    };
    if(computerGuess !== userGuess){
-       if(leftChance === 0){
+       if(leftChance === 0 && wins === 0) {
         losses++;   
         bosYerText.textContent = "Sorry, You Lost!";
 
