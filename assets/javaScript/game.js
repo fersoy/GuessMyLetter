@@ -1,7 +1,6 @@
 var wins = 0;
 var losses = 0;
 var leftChance = 10;
-var pressed = " ";
 var yourGuess = " ";
 
 
@@ -12,11 +11,13 @@ var yourGuessText = document.getElementById("trueGuess");
 var leftChanceText = document.getElementById("leftGuess");
 var winsText = document.getElementById("win");
 var lossesText = document.getElementById("loss");
-var pressedText = document.getElementById("pressed");
 var bosYerText = document.getElementById("bosYer");
 
+var updateGuessesSoFar = function() {
+    document.querySelector("#trueGuess").innerHTML = yourGuess.join(", ");
+  };
+
 document.onkeyup = function(event) {
-    yourGuess++;
     leftChance--;
     var userGuess = event.key;
 
@@ -25,24 +26,29 @@ document.onkeyup = function(event) {
    if((computerGuess === userGuess)){
        wins++;
    };
-   if(leftChance === 0){
-       losses++;
-       bosYerText.textContent = "Sorry, you lost!";
-       
+   if(computerGuess !== userGuess){
+       if(leftChance === 0){
+        losses++;   
+        bosYerText.textContent = "Sorry, You Lost!";
+
+       }
     };
 
-    if(wins > losses){
+    if((leftChance === 0) && (wins > losses)){
         bosYerText.textContent = "Good job. You won!";
     }
-    if(wins === losses){
+    
+    if(wins === losses && wins !== 0){
         bosYerText.textContent = "You are tie!"
     }
 
-//    yourGuessText.textContent = userGuess[i] + ", ";
    myGuess.textContent = userGuess;
    winsText.textContent = wins;
    lossesText.textContent = losses;
    leftChanceText.textContent = leftChance;
-   pressedText.textContent = userGuess;
+   
 
+   if(leftChance === -1){ 
+    window.location = window.location;
+   }
 };
